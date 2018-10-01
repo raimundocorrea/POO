@@ -26,15 +26,29 @@ namespace Bitmons_Entrega2
             DefBase = def;
         }
 
-        public void CambiarVida(Bitmon BitmomEnemigo)
-        {
+        public void CambiarVida(Bitmon BitmomEnemigo){
+        
+            vida = vida - Ataque();
+
+        }
+
+
+       
+
+        public int Ataque(IAtacarFuego tipoAtaque){
+        }                                                   
+
+
+
             
         }
+        
 
-        public void Ataque(IAtacarFuego tipoAtaque)
-        {
+        
 
-        }
+        
 
-    }
+
+
+    
 }
