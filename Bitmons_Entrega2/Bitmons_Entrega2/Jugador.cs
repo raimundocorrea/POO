@@ -8,8 +8,8 @@ namespace Bitmons_Entrega2
 {
     class Jugador
     {
-        string nombre;
-        List<Bitmon> equipo;
+        public string nombre;
+        List<Bitmon> Bitmoms;
         int jugada = 0;
 
         public Jugador(string nombre)
@@ -22,11 +22,11 @@ namespace Bitmons_Entrega2
             equipo.Add(bitmon);
         }
 
-        private void verEquipo()
+        private void verEquipo()    
         {
             for (int i = 1; i < 4; i++)
             {
-                Console.WriteLine("Bitmon {0} ");
+                Console.WriteLine(Bitmoms[i].VerInfoBitmom);
             }
         }
 
