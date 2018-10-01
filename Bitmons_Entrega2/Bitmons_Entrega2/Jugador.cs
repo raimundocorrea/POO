@@ -30,7 +30,7 @@ namespace Bitmons_Entrega2
             }
         }
 
-        private void verRibal()
+        private void verRival()
         {
 
         }
