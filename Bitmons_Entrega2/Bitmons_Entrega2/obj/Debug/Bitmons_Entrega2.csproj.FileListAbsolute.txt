@@ -1,0 +1,2 @@
+C:\Users\sebai\Source\Repos\raimundocorrea\POO\Bitmons_Entrega2\Bitmons_Entrega2\obj\Debug\Bitmons_Entrega2.csprojAssemblyReference.cache
+C:\Users\sebai\Source\Repos\raimundocorrea\POO\Bitmons_Entrega2\Bitmons_Entrega2\obj\Debug\Bitmons_Entrega2.csproj.CoreCompileInputs.cache

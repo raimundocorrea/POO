@@ -10,6 +10,9 @@ namespace Bitmons_Entrega2
     {
         static void Main(string[] args)
         {
+            Jugador p1 = new Jugador("pedro");
+            p1.Estrategia();
+            Console.Read();
             
         }
     }
