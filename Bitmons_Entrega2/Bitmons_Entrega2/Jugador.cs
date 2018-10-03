@@ -9,10 +9,11 @@ namespace Bitmons_Entrega2
     class Jugador
     {
         public string nombre;
-        List<Bitmon> Bitmoms;
+        List<Bitmon> equipo;
         int jugada ;
         int tipoAtaque;
         bool EsTuTurno = false;
+        
         public Jugador(string nombre)
         {
             this.nombre = nombre;
@@ -39,11 +40,12 @@ namespace Bitmons_Entrega2
             
             while(error){
             try{
-                jugada = Convert.ToInt32(Console.Read());
-                error = false;
+                jugada = int32.Parse(Console.Read());
+                
                 }
             catch (Exception e){
                 Console.WriteLine(e.GetType);
+                Console.WriteLine("Hubo un error, intente de nuevo");
                 }
 
 
