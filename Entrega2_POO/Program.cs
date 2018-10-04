@@ -10,6 +10,13 @@ namespace Entrega2_POO
     {
         static void Main(string[] args)
         {
+            Jugador[] jugadores;
+            Bitmon[] bitmonBaneados;
+
+            public void guardarPartida()
+            {
+
+            }
         }
     }
 }
