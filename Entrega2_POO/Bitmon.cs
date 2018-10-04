@@ -15,6 +15,7 @@ namespace Entrega2_POO
         int AttackBase;
         int DefBase;
         public bool estaActivo = false;
+        int estado = 0;
 
 
 
@@ -35,7 +36,7 @@ namespace Entrega2_POO
 
         public void CambiarVida(Bitmon BitmomEnemigo)
         {
-            vida = vida - Ataque();
+            vida -= Ataque();
         }
 
         public void CambiarStamina(int gasto)
@@ -48,6 +49,21 @@ namespace Entrega2_POO
             if (vida > 0)
                 return true;
             return false;
+        }
+
+        private int HabilidadEspecial()
+        {
+            return 1;
+        }
+
+        public int Descansar()
+        {
+            return 1;
+        }
+
+        public int Ataque()
+        {
+            return 1;
         }
     }
 }
