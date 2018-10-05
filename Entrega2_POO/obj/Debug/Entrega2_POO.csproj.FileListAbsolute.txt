@@ -1,0 +1,7 @@
+C:\Users\raijo\Documents\Programar\Progra Avanzada\Proyecto\POO\Entrega2_POO\obj\Debug\Entrega2_POO.csprojAssemblyReference.cache
+C:\Users\raijo\Documents\Programar\Progra Avanzada\Proyecto\POO\Entrega2_POO\obj\Debug\Entrega2_POO.csproj.CoreCompileInputs.cache
+C:\Users\raijo\Documents\Programar\Progra Avanzada\Proyecto\POO\Entrega2_POO\bin\Debug\Entrega2_POO.exe.config
+C:\Users\raijo\Documents\Programar\Progra Avanzada\Proyecto\POO\Entrega2_POO\bin\Debug\Entrega2_POO.exe
+C:\Users\raijo\Documents\Programar\Progra Avanzada\Proyecto\POO\Entrega2_POO\bin\Debug\Entrega2_POO.pdb
+C:\Users\raijo\Documents\Programar\Progra Avanzada\Proyecto\POO\Entrega2_POO\obj\Debug\Entrega2_POO.exe
+C:\Users\raijo\Documents\Programar\Progra Avanzada\Proyecto\POO\Entrega2_POO\obj\Debug\Entrega2_POO.pdb

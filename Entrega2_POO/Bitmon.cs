@@ -3,21 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Diagnostics;
 
 namespace Entrega2_POO
 {
+    [Serializable()]
     class Bitmon
     {
         string nombre;
         int stamina;
         int vida;
-        int naturaleza;
+        int naturaleza;//1-trueno, 2-fuego, 3-agua, 4-tierra, 5-aire
         int AttackBase;
         int DefBase;
         public bool estaActivo = false;
         int estado = 0;
-
-
 
         public Bitmon(string nombre, int stamina, int vida, int naturaleza, int attack, int def)
         {

@@ -3,9 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Diagnostics;
 
 namespace Entrega2_POO
 {
+    [Serializable()]
     class Jugador
     {
         public string nombre;
@@ -41,7 +46,7 @@ namespace Entrega2_POO
             {
                 try
                 {
-                    jugada = int32.Parse(Console.Read());
+                    jugada = int.Parse(Console.ReadLine());
                     error = false;
                 }
                 catch (Exception e)
