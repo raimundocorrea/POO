@@ -12,23 +12,28 @@ namespace Entrega2_POO
 {
     class PoderTrueno
     {
-        List<string> nombrePoderes;
-        List<int> danoPoderes;
-        List<int> HabilidadPoderes;
+        List<string> nombreTrueno;
+        List<int> danoTrueno;
+        List<int> habilidadTrueno1;
+        List<int> habilidadTrueno2;
 
         public string getPoder(int i)
         {
-            return nombrePoderes[i];
+            return nombreTrueno[i];
         }
 
         public int Ataque(int i, int ataqueBase)
         {
             if (i == 1)
             {
-                return danoPoderes[i] + ataqueBase;
+                return danoTrueno[i] + ataqueBase;
             }
-            return danoPoderes[i] * ataqueBase;
-            
+            return danoTrueno[i] * ataqueBase;
+        }
+
+        public string getHabilidad(int i)
+        {
+            return habilidadTrueno1[i]+" "+habilidadTrueno2[i];
         }
     }
 }
