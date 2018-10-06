@@ -10,7 +10,7 @@ namespace Entrega2_POO
     {
         List<string> nombreAgua;
         List<int> danoAgua;
-        List<int> habilidadAgua1;
+        List<string> habilidadAgua1;
         List<int> habilidadAgua2;
 
         public string getPoder(int i)

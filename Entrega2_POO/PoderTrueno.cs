@@ -14,7 +14,7 @@ namespace Entrega2_POO
     {
         List<string> nombreTrueno;
         List<int> danoTrueno;
-        List<int> habilidadTrueno1;
+        List<string> habilidadTrueno1;
         List<int> habilidadTrueno2;
 
         public string getPoder(int i)
