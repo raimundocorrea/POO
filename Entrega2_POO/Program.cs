@@ -26,12 +26,14 @@ namespace Entrega2_POO
             Bitmon b8 = new Bitmon("Nattramn", 100, 100, 1, 120, 40);
             Bitmon b9 = new Bitmon("Ozzy", 100, 350, 2, 100, 30);
             Bitmon b10 = new Bitmon("Buzz", 120, 250, 5, 80, 50);
+            List<Bitmon> bitmons = new List<Bitmon>() { b1, b2, b3, b4, b5, b6, b7, b8, b9, b10 };
+            Console.WriteLine(bitmons);
 
             FileStream fileStream = new FileStream("datos1", FileMode.OpenOrCreate);
             BinaryFormatter binaryFormatter = new BinaryFormatter();
-            List<Bitmon> bitmons = new List<Bitmon>() { b1, b2, b3, b4, b5, b6, b7, b8, b9, b10 };
             binaryFormatter.Serialize(fileStream, bitmons);
             fileStream.Close();
+            Console.ReadLine();
             //System.Windows.Forms.Application.Exit(); //exit para app
             System.Environment.Exit(1); //exit para consola
             */
@@ -43,22 +45,24 @@ namespace Entrega2_POO
                 FileStream fs = new FileStream("datos1", FileMode.Open);
                 BinaryFormatter binaryFormatter = new BinaryFormatter();
                 object deserializado = binaryFormatter.Deserialize(fs);
-                List<Bitmon> bitmons = (List<Bitmon>)deserializado;
-                foreach (Bitmon b in bitmons)
-                    Console.WriteLine(b);
+                List<Bitmon> bitmons = (List<Bitmon>) deserializado;
+                foreach (Bitmon bi in bitmons)
+                    bi.VerInfoBitmom();
                 Console.WriteLine("Estos son todos los Bitmons");
             }
             else
             {
                 Console.WriteLine("Hubo un error con la lectura de los archivos");
                 Console.WriteLine("Porfavor escriba en las lineas 17 y 37: //");
+                Console.WriteLine("Corra nuevamente el programa, este se cerrara al instante");
                 Console.WriteLine("Con eso el programa volvera a guardar los datos para el juego");
                 Console.WriteLine("Quite los: // en las lineas 17 y 37");
+                Console.WriteLine("Luego de esto el programa debiera funcionar correctamente");
                 Console.WriteLine("Gracias por su comprencion");
                 Console.ReadLine();
                 System.Environment.Exit(1);
             }
-
+            
             Console.WriteLine("Bienvenidos a BATALLAS BITMON!!");
             Console.WriteLine("Este es un juego de combates por turnos 1v1");
             Console.WriteLine("Cada jugador deberá escoger un equipo de 3 Bitmon para salir a luchar");

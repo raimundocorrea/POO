@@ -34,7 +34,7 @@ namespace Entrega2_POO
 
         public void VerInfoBitmom()
         {
-            Console.WriteLine(" -Nombre : {0}\n -Stamina: {1}\n -Vida: {2} - Naturalera: {3} - Ataque: {4} - Defensa: {5} ", nombre, stamina, vida, naturaleza, AttackBase, DefBase);
+            Console.WriteLine(" -Nombre : {0}\n -Stamina: {1}\n -Vida: {2}\n - Naturalera: {3}\n - Ataque: {4}\n - Defensa: {5}\n", nombre, stamina, vida, naturaleza, AttackBase, DefBase);
         }
 
         public void CambiarVida(Bitmon BitmomEnemigo)
