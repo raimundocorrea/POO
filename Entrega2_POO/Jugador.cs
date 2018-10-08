@@ -18,10 +18,22 @@ namespace Entrega2_POO
         int jugada;
         int tipoAtaque;
         bool EsTuTurno = false;
+        Bitmon bitmomActivo;
 
         public Jugador(string nombre)
         {
             this.nombre = nombre;
+            equipo[0].estaActivo = true;
+        }
+
+        public void CambiarBitmom(Bitmon bitmomActivo)
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                if (equipo[i].estaActivo == true) { equipo[i].estaActivo = false; }
+            }
+
+            bitmomActivo.estaActivo = true;
         }
 
         public void agregarBitmon(Bitmon bitmon)
@@ -31,17 +43,15 @@ namespace Entrega2_POO
 
         private void verEquipo()
         {
-            for (int i = 1; i < 4; i++)
+            for (int i = 0; i < 3; i++)
             {
                 equipo[i].VerInfoBitmom();
             }
         }
 
-        public void Estrategia()    // Es el metodo que permite al jugador elegir que hacer en el juego
+        public void ElegirJugada(int NumOpciones)
         {
             bool error = true;
-            Console.WriteLine("Que movimiento deseas hacer {0}?:\n [1] Cambiar Bitmom activo \n [2] Atacar \n [3] Ver info Bitmoms ");
-
             while (error)
             {
                 try
@@ -51,15 +61,61 @@ namespace Entrega2_POO
                 }
                 catch (Exception e)
                 {
+
+                    Console.WriteLine("Debe ingresar una opcion numerica!!");
                     Console.WriteLine(e.Message);
-                    Console.WriteLine("Hubo un error, ingrese nuevamente lo que decea hacer");
                 }
-
-
-
+                finally
+                {
+                    if ((jugada > NumOpciones) || (jugada <= 0))
+                    {
+                        error = true;
+                        Console.WriteLine("Opcion no valida, ingrese nuevamente.");
+                    }
+                }
             }
+        }
+        // Es el metodo que permite al jugador elegir que hacer en el juego
+        public void Estrategia()
+        {
+            Console.WriteLine("Que movimiento deseas hacer {0}?:\n [1] Cambiar Bitmom activo \n [2] Atacar \n [3] Ver info Bitmoms \n [4] Guardar Partida ");
+            ElegirJugada(4);
 
-
+            //[1] Cambiar Bitmom activo \n [2] Atacar \n [3] Ver info Bitmoms \n Descansar
+            if (jugada == 1)
+            {
+                Console.WriteLine("Indique el bitmom que desea utilizar: ");
+                verEquipo();    //muestra la info del equipo
+                ElegirJugada(3);
+                while (equipo[jugada].estaVivo() == false)
+                {
+                    Console.WriteLine("El Bitmom {0} ya esta muerto ", equipo[jugada]);
+                    Console.WriteLine("seleccione nuevamente");
+                    ElegirJugada(3);
+                }
+                Console.WriteLine("Has seleccionado el Bitmom {0}", equipo[jugada]);
+            }
+            else if (jugada == 2)
+            {
+                equipo[jugada].Ataque();
+            }
+            else if (jugada == 3)
+            {
+                verEquipo();
+            }
+            else if (jugada == 4)
+            {
+                Console.WriteLine("Guardar partida");// FALTA POR HACER
+                //Guardar partida
+            }
+        }
+        public bool KO()
+        {
+            if (equipo[0].estaVivo() && (equipo[1].estaVivo() && equipo[2].estaVivo()))
+            {
+                return true;
+            }
+            return false;
         }
     }
 }
