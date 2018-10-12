@@ -6,16 +6,11 @@ using System.Threading.Tasks;
 
 namespace Entrega2_POO
 {
-    class Normal : Naturaleza
+    class Normal : TipoAtaque
     {
         int dano;
 
-        public Normal()
-        {
-
-        }
-
-        protected override int Attack(int ataqueBase, Habilidad habilidad)
+        public override int Attack(int ataqueBase, Habilidad habilidad)
         {
             string oper = habilidad.getOperAttack();
             if (oper == "+")
@@ -28,9 +23,19 @@ namespace Entrega2_POO
                 return ataqueBase - habilidad.getAttack();
         }
 
-        protected override void Habilility()
+        public override void Habilility(Habilidad habilidad, Jugador j)
         {
-
+            if (habilidad.getHabilidad() != 0)
+            {
+                foreach (Bitmon b in j.equipo)
+                {
+                    if (b.estaActivo)
+                    {
+                        b.estado += habilidad.getHabilidad();
+                        break;
+                    }
+                }
+            }
         }
     }
 }

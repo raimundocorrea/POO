@@ -14,7 +14,9 @@ namespace Entrega2_POO
     {
         static void Main(string[] args)
         {
-            /*serializacion de informacion precargada en programa - solo se corre 1 vez
+            //serializacion de informacion precargada en programa - solo se corre 1 vez
+
+
             //Creacion de Bitmons
             Bitmon b1 = new Bitmon("Drago", 150, 300, 2, 75, 40);
             Bitmon b2 = new Bitmon("Jeti", 100, 450, 4, 35, 80);
@@ -27,7 +29,8 @@ namespace Entrega2_POO
             Bitmon b9 = new Bitmon("Ozzy", 100, 350, 2, 100, 30);
             Bitmon b10 = new Bitmon("Buzz", 120, 250, 5, 80, 50);
             List<Bitmon> bitmons = new List<Bitmon>() { b1, b2, b3, b4, b5, b6, b7, b8, b9, b10 };
-            Console.WriteLine(bitmons);
+
+
 
             FileStream fileStream = new FileStream("datos1", FileMode.OpenOrCreate);
             BinaryFormatter binaryFormatter = new BinaryFormatter();
@@ -36,19 +39,21 @@ namespace Entrega2_POO
             Console.ReadLine();
             //System.Windows.Forms.Application.Exit(); //exit para app
             System.Environment.Exit(1); //exit para consola
-            */
             //fin serializacion
 
+            /*
             //deserializacion
+            List<Bitmon> bitmons = new List<Bitmon>();
             if (File.Exists("datos1"))
             {
                 FileStream fs = new FileStream("datos1", FileMode.Open);
                 BinaryFormatter binaryFormatter = new BinaryFormatter();
                 object deserializado = binaryFormatter.Deserialize(fs);
-                List<Bitmon> bitmons = (List<Bitmon>) deserializado;
-                foreach (Bitmon bi in bitmons)
-                    bi.VerInfoBitmom();
-                Console.WriteLine("Estos son todos los Bitmons");
+                List<Bitmon>  bit = (List<Bitmon>) deserializado;
+                foreach (Bitmon b in bit)
+                {
+                    bitmons.Add(b);
+                }
             }
             else
             {
@@ -62,7 +67,7 @@ namespace Entrega2_POO
                 Console.ReadLine();
                 System.Environment.Exit(1);
             }
-            
+            */
             Console.WriteLine("Bienvenidos a BATALLAS BITMON!!");
             Console.WriteLine("Este es un juego de combates por turnos 1v1");
             Console.WriteLine("Cada jugador deberá escoger un equipo de 3 Bitmon para salir a luchar");
@@ -84,7 +89,57 @@ namespace Entrega2_POO
             }
             Jugador p1 = new Jugador(player1);
             Jugador p2 = new Jugador(player2);
-            
+            Random rnd = new Random();
+            List<Jugador> jugadores;
+            int orden = rnd.Next(1, 2);
+            if (orden == 1)
+                jugadores = new List<Jugador>() { p1, p2 };
+            else
+                jugadores = new List<Jugador>() { p2, p1 };
+
+            Console.WriteLine("El orden sorteado es el siguiente:");
+            Console.WriteLine("Inicia el jugador: {0}\n Luego va el jugador: {1}", jugadores[0], jugadores[1]);
+            int k = 0;
+            for (int i = 1; i < 7; i++)
+            {
+                Console.WriteLine("Jugador {0} escoja el Bitmon", jugadores[k]);
+                int j = 1;
+                foreach (Bitmon bi in bitmons)
+                {
+                    Console.WriteLine(j);
+                    bi.VerInfoBitmom();
+                    j += 1;
+                }
+                Console.WriteLine("Ingrese en numero del Bitmon que decee escoger");
+                jugadores[k].ElegirJugada(10);
+                jugadores[k].agregarBitmon(bitmons[jugadores[k].jugada]);
+                if (k == 0)
+                {
+                    k = 1;
+                }
+                else
+                    k = 0;
+            }
+            while (p1.KO() || p2.KO())
+            {
+                jugadores[k].EsTuTurno = true;
+                if (k == 0)
+                {
+                    jugadores[1].EsTuTurno = false;
+                    jugadores[k].Estrategia();
+                }
+                else
+                {
+                    jugadores[0].EsTuTurno = false;
+                    jugadores[k].Estrategia();
+                }
+                if (k == 0)
+                {
+                    k = 1;
+                    continue;
+                }
+                k = 0;
+            }
         }
     }
 }

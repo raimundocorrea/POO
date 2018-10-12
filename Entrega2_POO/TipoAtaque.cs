@@ -6,22 +6,21 @@ using System.Threading.Tasks;
 
 namespace Entrega2_POO
 {
-    abstract class Naturaleza
+    [Serializable()]
+    abstract class TipoAtaque
     {
         public List<Habilidad> habilidades;
 
-        protected abstract int Attack(int ataqueBase, Habilidad habilidad);
+        public abstract int Attack(int ataqueBase, Habilidad habilidad);
 
-        protected abstract void Habilility();
+        public abstract void Habilility(Habilidad habilidad, Jugador j);
 
-        public void getPoderes(Naturaleza n)
+        public void getHabilidades(string naturaleza)
         {
             foreach (Habilidad h in habilidades)
             {
-                if (h.naturaleza == n)
-                {
+                if (h.naturaleza == naturaleza)
                     h.verHabilidad();
-                }
             }
         }
     }

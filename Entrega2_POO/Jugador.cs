@@ -14,26 +14,37 @@ namespace Entrega2_POO
     class Jugador
     {
         public string nombre;
-        public List<Bitmon> equipo;
-        int jugada;
-        int tipoAtaque;
+        List<Bitmon> equipo;
+        public int jugada;
         bool EsTuTurno = false;
         Bitmon bitmomActivo;
 
         public Jugador(string nombre)
         {
             this.nombre = nombre;
-            equipo[0].estaActivo = true;
+            bitmomActivo = equipo[0];
         }
 
-        public void CambiarBitmom(Bitmon bitmomActivo)
+        public void CambiarBitmom(Bitmon bb)
         {
-            for (int i = 0; i < 3; i++)
-            {
-                if (equipo[i].estaActivo == true) { equipo[i].estaActivo = false; }
-            }
+            bitmomActivo = bb;
+        }
 
-            bitmomActivo.estaActivo = true;
+        public void estadoEquipo()
+        {
+            foreach (Bitmon b in equipo)
+            {
+                if (b.estaVivo() && b.estado > 0)
+                {
+                    b.CambiarVida(5);
+                    b.estado -= 1;
+                }
+                else if (b.estaVivo() && b.estado < 0)
+                {
+                    b.CambiarVida(-5);
+                    b.estado += 1;
+                }
+            }
         }
 
         public void agregarBitmon(Bitmon bitmon)
@@ -78,10 +89,10 @@ namespace Entrega2_POO
         // Es el metodo que permite al jugador elegir que hacer en el juego
         public void Estrategia()
         {
-            Console.WriteLine("Que movimiento deseas hacer {0}?:\n [1] Cambiar Bitmom activo \n [2] Atacar \n [3] Ver info Bitmoms \n [4] Guardar Partida ");
-            ElegirJugada(4);
+            Console.WriteLine("Que movimiento deseas hacer {0}?:\n [1] Cambiar Bitmom activo \n [2] Atacar \n [3] Ver info Bitmoms \n [4] Guardar Partida \n [5] Descansar Bitmon");
+            ElegirJugada(5);
 
-            //[1] Cambiar Bitmom activo \n [2] Atacar \n [3] Ver info Bitmoms \n Descansar
+            //[1] Cambiar Bitmom activo \n [2] Atacar \n [3] Ver info Bitmoms \n [4] Guardar partida \n [5] Descansar
             if (jugada == 1)
             {
                 Console.WriteLine("Indique el bitmom que desea utilizar: ");
@@ -94,10 +105,12 @@ namespace Entrega2_POO
                     ElegirJugada(3);
                 }
                 Console.WriteLine("Has seleccionado el Bitmom {0}", equipo[jugada]);
+                bitmomActivo = equipo[jugada];
             }
-            else if (jugada == 2)
+            else if (jugada == 2)/////////////////////////////////////////////////////////////7
             {
-                equipo[jugada].Ataque();
+
+                bitmomActivo.Ataque();
             }
             else if (jugada == 3)
             {
@@ -108,14 +121,19 @@ namespace Entrega2_POO
                 Console.WriteLine("Guardar partida");// FALTA POR HACER
                 //Guardar partida
             }
+            else if (jugada == 5)
+            {
+                bitmomActivo.Descansar();
+            }  
         }
+
         public bool KO()
         {
             if (equipo[0].estaVivo() && (equipo[1].estaVivo() && equipo[2].estaVivo()))
             {
-                return true;
+                return false;
             }
-            return false;
+            return true;
         }
     }
 }

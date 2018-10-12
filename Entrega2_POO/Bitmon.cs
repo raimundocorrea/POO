@@ -16,13 +16,12 @@ namespace Entrega2_POO
         string nombre;
         int stamina;
         int vida;
-        int naturaleza;//1-trueno, 2-fuego, 3-agua, 4-tierra, 5-aire
+        string naturaleza;//1-trueno, 2-fuego, 3-agua, 4-tierra, 5-aire
         int AttackBase;
         int DefBase;
-        public bool estaActivo = false;
-        int estado = 0;
+        public int estado = 0;//corresponde al contador de turnos en que esta afectado por una habilidad
 
-        public Bitmon(string nombre, int stamina, int vida, int naturaleza, int attack, int def)
+        public Bitmon(string nombre, int stamina, int vida, string naturaleza, int attack, int def)
         {
             this.nombre = nombre;
             this.stamina = stamina;
@@ -34,12 +33,17 @@ namespace Entrega2_POO
 
         public void VerInfoBitmom()
         {
-            Console.WriteLine(" -Nombre : {0}\n -Stamina: {1}\n -Vida: {2}\n - Naturalera: {3}\n - Ataque: {4}\n - Defensa: {5}\n", nombre, stamina, vida, naturaleza, AttackBase, DefBase);
+            Console.WriteLine(" - Nombre : {0}\n - Stamina: {1}\n - Vida: {2}\n - Naturalera: {3}\n - Ataque: {4}\n - Defensa: {5}\n", nombre, stamina, vida, naturaleza, AttackBase, DefBase);
         }
 
-        public void CambiarVida(Bitmon BitmomEnemigo)
+        public void CambiarEstado(int cambio)
         {
-            vida -= Ataque();
+            estado += cambio;
+        }
+
+        public void CambiarVida(int cambio)
+        {
+            vida -= cambio;
         }
 
         public void CambiarStamina(int gasto)
@@ -54,19 +58,32 @@ namespace Entrega2_POO
             return false;
         }
 
-        private int HabilidadEspecial()
+        public void Descansar()
         {
-            return 1;
+            stamina += 20;
+            vida += 5;
         }
 
-        public int Descansar()
+        public void Ataque(TipoAtaque ataque)
         {
-            return 1;
+            
+            /*
+            Console.WriteLine("Que ataque decea hacer?");
+            naturaleza.getPoderes();
+            j1.ElegirJugada(3);
+            foreach (Bitmon b in j2.equipo)
+            {
+                if (b.estaActivo)
+                {
+                    b.vida -= j1.bitmomActivo.naturaleza.Attack(j1.bitmomActivo.AttackBase, j1.bitmomActivo.naturaleza.habilidades[j1.jugada]);
+                    j1.bitmomActivo.naturaleza.Habilility(j1.bitmomActivo.naturaleza.habilidades[j1.jugada], j2);
+                } 
+            }*/
         }
 
-        public int Ataque()
+        public void Habilidad(TipoAtaque habilidad)
         {
-            return 1;
+
         }
     }
 }

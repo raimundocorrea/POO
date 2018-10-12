@@ -6,28 +6,29 @@ using System.Threading.Tasks;
 
 namespace Entrega2_POO
 {
+    [Serializable()]
     class Habilidad
     {
         public string nombre;
-        public Naturaleza naturaleza;
+        public string naturaleza;
         int danoAttack;
         string operadorAttack;
         int efectoHabilidad;
-        string operadorHabilidad;
+        //string operadorHabilidad;
 
-        public Habilidad(string nombre, Naturaleza n, int dano, string oper1, int efect, string oper2)
+        public Habilidad(string nombre, TipoAtaque n, int dano, string oper1, int efect)//, string oper2)
         {
             this.nombre = nombre;
             naturaleza = n;
             danoAttack = dano;
             operadorAttack = oper1;
             efectoHabilidad = efect;
-            operadorHabilidad = oper2;
+            //operadorHabilidad = oper2;
         }
 
         public void verHabilidad()
         {
-            Console.WriteLine(" - Nombre : {0}\n - Naturaleza: {1}\n - Ataque: AtaqueBase{2}{3}\n - Efecto: {4}{5}\n", nombre, naturaleza, operadorAttack, danoAttack, operadorHabilidad, efectoHabilidad);
+            Console.WriteLine(" - Nombre : {0}\n - Naturaleza: {1}\n - Ataque: AtaqueBase{2}{3}\n - Efecto por {4} turnos\n", nombre, naturaleza, operadorAttack, danoAttack, efectoHabilidad);
         }
 
         public int getAttack()
@@ -44,10 +45,10 @@ namespace Entrega2_POO
         {
             return efectoHabilidad;
         }
-
+        /*
         public string getOperHabilidad()
         {
             return operadorHabilidad;
-        }
+        }*/
     }
 }

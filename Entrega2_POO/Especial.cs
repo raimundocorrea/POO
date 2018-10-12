@@ -6,16 +6,11 @@ using System.Threading.Tasks;
 
 namespace Entrega2_POO
 {
-    class Especial : Naturaleza
+    class Especial : TipoAtaque
     {
-        protected override int Attack(int ataqueBase, Habilidad habilidad)
+        public override int Attack(int ataqueBase, Habilidad habilidad)
         {
-            return 1;
-        }
-
-        protected override void Habilility()
-        {
-
+            throw new NotImplementedException();
         }
     }
 }
