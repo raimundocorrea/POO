@@ -10,6 +10,11 @@ namespace Entrega2_POO
     {
         int dano;
 
+        public Normal()
+        {
+
+        }
+
         public override int Attack(int ataqueBase, Habilidad habilidad)
         {
             string oper = habilidad.getOperAttack();

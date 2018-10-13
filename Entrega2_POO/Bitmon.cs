@@ -36,6 +36,11 @@ namespace Entrega2_POO
             Console.WriteLine(" - Nombre : {0}\n - Stamina: {1}\n - Vida: {2}\n - Naturalera: {3}\n - Ataque: {4}\n - Defensa: {5}\n", nombre, stamina, vida, naturaleza, AttackBase, DefBase);
         }
 
+        public string getNaturaleza()
+        {
+            return naturaleza;
+        }
+
         public void CambiarEstado(int cambio)
         {
             estado += cambio;
@@ -66,7 +71,7 @@ namespace Entrega2_POO
 
         public void Ataque(TipoAtaque ataque)
         {
-            
+            ataque.getHabilidades(naturaleza);
             /*
             Console.WriteLine("Que ataque decea hacer?");
             naturaleza.getPoderes();

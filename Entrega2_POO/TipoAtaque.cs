@@ -9,13 +9,13 @@ namespace Entrega2_POO
     [Serializable()]
     abstract class TipoAtaque
     {
-        public List<Habilidad> habilidades;
+        public static List<Habilidad> habilidades;
 
         public abstract int Attack(int ataqueBase, Habilidad habilidad);
 
         public abstract void Habilility(Habilidad habilidad, Jugador j);
 
-        public void getHabilidades(string naturaleza)
+        public static void getHabilidades(string naturaleza)
         {
             foreach (Habilidad h in habilidades)
             {

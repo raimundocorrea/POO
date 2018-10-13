@@ -109,8 +109,24 @@ namespace Entrega2_POO
             }
             else if (jugada == 2)/////////////////////////////////////////////////////////////7
             {
+                TipoAtaque.getHabilidades(bitmomActivo.getNaturaleza());
+                ElegirJugada(2);
+                int habilidad1 = 0;
+                foreach(Habilidad h in TipoAtaque.habilidades)//selecciono la posicion de la habilidad escogida dentro de lista de habilidades
+                {
+                    if (jugada == 1 && h.naturaleza == bitmomActivo.getNaturaleza())
+                    {
+                        jugada = habilidad1;
+                        break;
+                    }
+                    if (h.naturaleza == bitmomActivo.getNaturaleza())
+                    {
+                        jugada -= 1;
+                    }
+                    habilidad1 += 1;
+                }
 
-                bitmomActivo.Ataque();
+                bitmomActivo.Ataque(attack);
             }
             else if (jugada == 3)
             {
