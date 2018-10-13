@@ -71,7 +71,7 @@ namespace Entrega2_POO
 
         public void Ataque(TipoAtaque ataque)
         {
-            ataque.getHabilidades(naturaleza);
+            
             /*
             Console.WriteLine("Que ataque decea hacer?");
             naturaleza.getPoderes();

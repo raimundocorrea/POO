@@ -125,8 +125,17 @@ namespace Entrega2_POO
                     }
                     habilidad1 += 1;
                 }
-
-                bitmomActivo.Ataque(attack);
+                if (TipoAtaque.habilidades[jugada].getTipo())
+                {
+                    TipoAtaque n = new Normal();
+                    bitmomActivo.Ataque(n);
+                }
+                else
+                {
+                    TipoAtaque e = new Especial();
+                    bitmomActivo.Habilidad(e);
+                }
+                    
             }
             else if (jugada == 3)
             {

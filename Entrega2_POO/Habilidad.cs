@@ -15,6 +15,7 @@ namespace Entrega2_POO
         string operadorAttack;
         int efectoHabilidad;
         //string operadorHabilidad;
+        bool tipoAtaque;//true: Normal, false: especial
 
         public Habilidad(string nombre, TipoAtaque n, int dano, string oper1, int efect)//, string oper2)
         {
@@ -50,5 +51,10 @@ namespace Entrega2_POO
         {
             return operadorHabilidad;
         }*/
+
+        public bool getTipo()
+        {
+            return tipoAtaque;
+        }
     }
 }
