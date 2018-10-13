@@ -128,7 +128,7 @@ namespace Entrega2_POO
                 if (TipoAtaque.habilidades[jugada].getTipo())
                 {
                     TipoAtaque n = new Normal();
-                    bitmomActivo.Ataque(n);
+                    bitmomActivo.Ataque(n, TipoAtaque.habilidades[jugada]);
                 }
                 else
                 {
@@ -149,7 +149,22 @@ namespace Entrega2_POO
             else if (jugada == 5)
             {
                 bitmomActivo.Descansar();
-            }  
+            }
+
+            foreach(Bitmon bb in equipo)
+            {
+                if (bb.estado > 0)//reducir vida
+                {
+                    bb.CambiarVida(5);
+                    bb.estado -= 1;
+                }
+                else if (bb.estado < 0)//aumentar vida
+                {
+                    bb.CambiarVida(-5);
+                    bb.estado += 1;
+                }
+
+            }
         }
 
         public bool KO()

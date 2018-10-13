@@ -13,17 +13,18 @@ namespace Entrega2_POO
         public string naturaleza;
         int danoAttack;
         string operadorAttack;
-        int efectoHabilidad;
+        int efectoHabilidad;//cantidad de turnos en que se enferma a un bitmon
         //string operadorHabilidad;
         bool tipoAtaque;//true: Normal, false: especial
 
-        public Habilidad(string nombre, TipoAtaque n, int dano, string oper1, int efect)//, string oper2)
+        public Habilidad(string nombre, string naturaleza, int dano, string oper1, int efect, bool tipo)//, string oper2)
         {
             this.nombre = nombre;
-            naturaleza = n;
+            this.naturaleza = naturaleza;
             danoAttack = dano;
             operadorAttack = oper1;
             efectoHabilidad = efect;
+            tipoAtaque = tipo;
             //operadorHabilidad = oper2;
         }
 

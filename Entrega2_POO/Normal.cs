@@ -23,18 +23,11 @@ namespace Entrega2_POO
                 return ataqueBase - habilidad.getAttack();
         }
 
-        public override void Habilility(Habilidad habilidad, Jugador j)
+        public override void Habilility(Habilidad habilidad, Bitmon bb)
         {
             if (habilidad.getHabilidad() != 0)
             {
-                foreach (Bitmon b in j.equipo)
-                {
-                    if (b.estaActivo)
-                    {
-                        b.estado += habilidad.getHabilidad();
-                        break;
-                    }
-                }
+                
             }
         }
     }

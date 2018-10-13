@@ -69,9 +69,10 @@ namespace Entrega2_POO
             vida += 5;
         }
 
-        public void Ataque(TipoAtaque ataque)
+        public void Ataque(TipoAtaque ataque, Habilidad habilidad)
         {
-            
+            ataque.Attack(AttackBase, habilidad);
+            ataque.Habilility()
             /*
             Console.WriteLine("Que ataque decea hacer?");
             naturaleza.getPoderes();
