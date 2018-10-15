@@ -23,11 +23,11 @@ namespace Entrega2_POO
                 return ataqueBase - habilidad.getAttack();
         }
 
-        public override void Habilility(Habilidad habilidad, Bitmon bb)
+        public override void Hability(Habilidad habilidad, Bitmon bb)
         {
             if (habilidad.getHabilidad() != 0)
             {
-                
+                bb.CambiarEstado(habilidad.getHabilidad());
             }
         }
     }

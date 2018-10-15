@@ -16,7 +16,7 @@ namespace Entrega2_POO
         public string nombre;
         List<Bitmon> equipo;
         public int jugada;
-        bool EsTuTurno = false;
+        public int turnosPerdidos = 0;
         Bitmon bitmomActivo;
 
         public Jugador(string nombre)
@@ -25,9 +25,19 @@ namespace Entrega2_POO
             bitmomActivo = equipo[0];
         }
 
-        public void CambiarBitmom(Bitmon bb)
+        public void CambiarBitmom()
         {
-            bitmomActivo = bb;
+            Console.WriteLine("Indique el bitmom que desea utilizar: ");
+            verEquipo();    //muestra la info del equipo
+            ElegirJugada(3);
+            while (equipo[jugada].estaVivo() == false)
+            {
+                Console.WriteLine("El Bitmom {0} ya esta muerto ", equipo[jugada]);
+                Console.WriteLine("seleccione nuevamente");
+                ElegirJugada(3);
+            }
+            Console.WriteLine("Has seleccionado el Bitmom {0}", equipo[jugada]);
+            bitmomActivo = equipo[jugada];
         }
 
         public void estadoEquipo()
@@ -52,12 +62,17 @@ namespace Entrega2_POO
             equipo.Add(bitmon);
         }
 
-        private void verEquipo()
+        public void verEquipo()
         {
             for (int i = 0; i < 3; i++)
             {
                 equipo[i].VerInfoBitmom();
             }
+        }
+
+        public Bitmon bitmonActivo()
+        {
+            return bitmomActivo;
         }
 
         public void ElegirJugada(int NumOpciones)
@@ -72,7 +87,6 @@ namespace Entrega2_POO
                 }
                 catch (Exception e)
                 {
-
                     Console.WriteLine("Debe ingresar una opcion numerica!!");
                     Console.WriteLine(e.Message);
                 }
@@ -87,7 +101,7 @@ namespace Entrega2_POO
             }
         }
         // Es el metodo que permite al jugador elegir que hacer en el juego
-        public void Estrategia()
+        public void Estrategia(Jugador jEnemigo)
         {
             Console.WriteLine("Que movimiento deseas hacer {0}?:\n [1] Cambiar Bitmom activo \n [2] Atacar \n [3] Ver info Bitmoms \n [4] Guardar Partida \n [5] Descansar Bitmon");
             ElegirJugada(5);
@@ -95,22 +109,12 @@ namespace Entrega2_POO
             //[1] Cambiar Bitmom activo \n [2] Atacar \n [3] Ver info Bitmoms \n [4] Guardar partida \n [5] Descansar
             if (jugada == 1)
             {
-                Console.WriteLine("Indique el bitmom que desea utilizar: ");
-                verEquipo();    //muestra la info del equipo
-                ElegirJugada(3);
-                while (equipo[jugada].estaVivo() == false)
-                {
-                    Console.WriteLine("El Bitmom {0} ya esta muerto ", equipo[jugada]);
-                    Console.WriteLine("seleccione nuevamente");
-                    ElegirJugada(3);
-                }
-                Console.WriteLine("Has seleccionado el Bitmom {0}", equipo[jugada]);
-                bitmomActivo = equipo[jugada];
+                CambiarBitmom();
             }
-            else if (jugada == 2)/////////////////////////////////////////////////////////////7
+            else if (jugada == 2)//Atacar
             {
                 TipoAtaque.getHabilidades(bitmomActivo.getNaturaleza());
-                ElegirJugada(2);
+                ElegirJugada(3);
                 int habilidad1 = 0;
                 foreach(Habilidad h in TipoAtaque.habilidades)//selecciono la posicion de la habilidad escogida dentro de lista de habilidades
                 {
@@ -128,14 +132,23 @@ namespace Entrega2_POO
                 if (TipoAtaque.habilidades[jugada].getTipo())
                 {
                     TipoAtaque n = new Normal();
-                    bitmomActivo.Ataque(n, TipoAtaque.habilidades[jugada]);
+                    bitmomActivo.Ataque(n, TipoAtaque.habilidades[jugada], jEnemigo);
                 }
                 else
                 {
                     TipoAtaque e = new Especial();
-                    bitmomActivo.Habilidad(e);
-                }
-                    
+                    string pierdeTurno = TipoAtaque.habilidades[jugada].getOperAttack();
+                    char pierde = pierdeTurno[0];
+                    if (Convert.ToInt32(pierde) == 97)//revisa si empieza con una "a"
+                    {
+                        //en caso que el jugador que este jugando pierda turno es facil de cambiar
+                        //habria que agregarle otro char al getOperAttack para revisar a que jugador corresponde aplicarlo
+                        //y poner turnosPerdidos = Convert.ToInt32(turno) - 48;
+                        char turno = pierdeTurno[1];//la cantidad de turnos perdido hay que restarle 48
+                        jEnemigo.turnosPerdidos = Convert.ToInt32(turno) - 48;//turnos es la cantidad de turnos que se pierden
+                    }
+                    bitmomActivo.Habilidad(e, TipoAtaque.habilidades[jugada], equipo);
+                }   
             }
             else if (jugada == 3)
             {
@@ -151,7 +164,7 @@ namespace Entrega2_POO
                 bitmomActivo.Descansar();
             }
 
-            foreach(Bitmon bb in equipo)
+            foreach(Bitmon bb in equipo)//al final de cada turno los bitmon sufriran los efectos de habilidad
             {
                 if (bb.estado > 0)//reducir vida
                 {

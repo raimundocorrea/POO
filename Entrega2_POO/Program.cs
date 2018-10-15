@@ -15,7 +15,21 @@ namespace Entrega2_POO
         static void Main(string[] args)
         {
             //serializacion de informacion precargada en programa - solo se corre 1 vez
-
+            Habilidad h1 = new Habilidad("Lanzallamas", "Fuego", 50, 2, "*", 3, true, "Ataque Base * 2 y Vida Bitmom atacado -5 por 3 turnos");
+            Habilidad h2 = new Habilidad("Remolino de Fuego", "Fuego", 100, 5, "*", 0, true, "Ataque Base * 5");
+            Habilidad h3 = new Habilidad("Bola de Fuego", "Fuego", 30, 50, "+", 0, true, "Ataque Base + 50");
+            Habilidad h4 = new Habilidad("Terremoto", "Tierra", 30, 300, "+", 0, true, "Ataque Base + 300");
+            Habilidad h5 = new Habilidad("Golpe de Piedra", "Tierra", 50, 3, "*", 0, true, "Ataque Base * 3");
+            //Habilidad h6 = new Habilidad("Control de sangre", "Agua", );
+            //Habilidad h7 = new Habilidad("Control de Sangre", "Agua", 100, 10, "+", );
+            //Habilidad h8 = new Habilidad("Rafaga de Viento", "Aire", );
+            //Habilidad h9 = new Habilidad("Huracan", "Aire", 80, 10, "+", 0, )
+            Habilidad h10 = new Habilidad("Chispa", "Trueno", 20, 100, "+", 0, true, "Ataque Base + 10");
+            //Habilidad h11 = new Habilidad("Sanacion", "Agua", 50, );
+            //Habilidad h12 = new Habilidad("Arena Movediza", "Tierra", 90, );
+            //Habilidad h13 = new Habilidad("Paralizar", "Trueno", 90);
+            //Habilidad h14 = new Habilidad("Shock Electrico", "Trueno", 100);
+            //Habilidad h15 = new Habilidad("Nuevo Aire", "Aire", 100);
 
             //Creacion de Bitmons
             Bitmon b1 = new Bitmon("Drago", 150, 300, "Fuego", 75, 40);
@@ -122,17 +136,41 @@ namespace Entrega2_POO
             }
             while (p1.KO() || p2.KO())
             {
-                jugadores[k].EsTuTurno = true;
                 if (k == 0)
                 {
-                    jugadores[1].EsTuTurno = false;
-                    jugadores[k].Estrategia();
+                    if (jugadores[k].turnosPerdidos > 0)
+                    {
+                        jugadores[k].turnosPerdidos -= 1;
+                        continue;
+                    }
+                    jugadores[k].Estrategia(jugadores[1]);
                 }
                 else
                 {
-                    jugadores[0].EsTuTurno = false;
-                    jugadores[k].Estrategia();
+                    if (jugadores[k].turnosPerdidos > 0)
+                    {
+                        jugadores[k].turnosPerdidos -= 1;
+                        continue;
+                    }
+                    jugadores[k].Estrategia(jugadores[0]);
                 }
+
+                foreach (Jugador j in jugadores)
+                {
+                    if (!(j.bitmonActivo().estaVivo()))
+                    {
+                        Console.WriteLine($"Jugador {j.nombre}, el bitmon {j.bitmonActivo()} ha muerto");
+                        if (j.KO())
+                        {
+                            Console.WriteLine($"Jugador {j.nombre} ha perdido");
+                            break;
+                        }
+                        Console.WriteLine("Debe cambiar de Bitmon \n Escoja uno nuevo");
+                        j.verEquipo();
+                        j.CambiarBitmom();
+                    }
+                }
+
                 if (k == 0)
                 {
                     k = 1;
@@ -140,6 +178,8 @@ namespace Entrega2_POO
                 }
                 k = 0;
             }
+
+
         }
     }
 }

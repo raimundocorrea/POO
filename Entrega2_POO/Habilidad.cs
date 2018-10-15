@@ -14,23 +14,25 @@ namespace Entrega2_POO
         int danoAttack;
         string operadorAttack;
         int efectoHabilidad;//cantidad de turnos en que se enferma a un bitmon
-        //string operadorHabilidad;
         bool tipoAtaque;//true: Normal, false: especial
+        int gasto;
+        string descrip;
 
-        public Habilidad(string nombre, string naturaleza, int dano, string oper1, int efect, bool tipo)//, string oper2)
+        public Habilidad(string nombre, string naturaleza, int stamina, int dano, string oper1, int efect, bool tipo, string descrip)
         {
             this.nombre = nombre;
             this.naturaleza = naturaleza;
+            gasto = stamina;
             danoAttack = dano;
             operadorAttack = oper1;
             efectoHabilidad = efect;
             tipoAtaque = tipo;
-            //operadorHabilidad = oper2;
+            this.descrip = descrip;
         }
 
         public void verHabilidad()
         {
-            Console.WriteLine(" - Nombre : {0}\n - Naturaleza: {1}\n - Ataque: AtaqueBase{2}{3}\n - Efecto por {4} turnos\n", nombre, naturaleza, operadorAttack, danoAttack, efectoHabilidad);
+            Console.WriteLine(" - Nombre : {0}\n - Descripcion: \n", nombre, );
         }
 
         public int getAttack()
@@ -47,11 +49,11 @@ namespace Entrega2_POO
         {
             return efectoHabilidad;
         }
-        /*
-        public string getOperHabilidad()
+
+        public int getGasto()
         {
-            return operadorHabilidad;
-        }*/
+            return gasto;
+        }
 
         public bool getTipo()
         {

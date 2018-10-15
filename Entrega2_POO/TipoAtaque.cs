@@ -13,7 +13,7 @@ namespace Entrega2_POO
 
         public abstract int Attack(int ataqueBase, Habilidad habilidad);
 
-        public abstract void Habilility(Habilidad habilidad, Jugador j);
+        public abstract void Hability(Habilidad habilidad, Bitmon bb);
 
         public static void getHabilidades(string naturaleza)
         {

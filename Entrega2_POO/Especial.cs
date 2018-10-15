@@ -10,10 +10,10 @@ namespace Entrega2_POO
     {
         public override int Attack(int ataqueBase, Habilidad habilidad)
         {
-            throw new NotImplementedException();
+            return habilidad.getAttack();//ojo que esto puede hacer que se sobrepase la vida inicial
         }
 
-        public override void Habilility(Habilidad habilidad, Jugador j)
+        public override void Hability(Habilidad habilidad, Bitmon bb)
         {
             throw new NotImplementedException();
         }

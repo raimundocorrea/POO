@@ -14,7 +14,7 @@ namespace Entrega2_POO
     class Bitmon
     {
         string nombre;
-        int stamina;
+        int stamina;//int[] stamina;
         int vida;
         string naturaleza;//1-trueno, 2-fuego, 3-agua, 4-tierra, 5-aire
         int AttackBase;
@@ -24,7 +24,7 @@ namespace Entrega2_POO
         public Bitmon(string nombre, int stamina, int vida, string naturaleza, int attack, int def)
         {
             this.nombre = nombre;
-            this.stamina = stamina;
+            this.stamina = stamina;//stamina = new int[2]{stamina1, stamina2}
             this.vida = vida;
             this.naturaleza = naturaleza;
             AttackBase = attack;
@@ -69,27 +69,34 @@ namespace Entrega2_POO
             vida += 5;
         }
 
-        public void Ataque(TipoAtaque ataque, Habilidad habilidad)
+        public void Ataque(TipoAtaque ataque, Habilidad habilidad, Jugador j)
         {
-            ataque.Attack(AttackBase, habilidad);
-            ataque.Habilility()
-            /*
-            Console.WriteLine("Que ataque decea hacer?");
-            naturaleza.getPoderes();
-            j1.ElegirJugada(3);
-            foreach (Bitmon b in j2.equipo)
+            if (habilidad.getGasto() <= stamina)
             {
-                if (b.estaActivo)
-                {
-                    b.vida -= j1.bitmomActivo.naturaleza.Attack(j1.bitmomActivo.AttackBase, j1.bitmomActivo.naturaleza.habilidades[j1.jugada]);
-                    j1.bitmomActivo.naturaleza.Habilility(j1.bitmomActivo.naturaleza.habilidades[j1.jugada], j2);
-                } 
-            }*/
+                CambiarStamina(habilidad.getGasto());
+                ataque.Attack(AttackBase, habilidad);
+                ataque.Hability(habilidad, j.bitmonActivo());
+            }
+            else
+                Console.WriteLine("No te alcanza la Stamina \n Perdiste tu turno");
         }
 
-        public void Habilidad(TipoAtaque habilidad)
+        public void Habilidad(TipoAtaque especial, Habilidad habilidad, List<Bitmon> equipo)
         {
-
+            if (habilidad.getGasto() <= stamina)
+            {
+                CambiarStamina(habilidad.getGasto());
+                foreach (Bitmon bb in equipo)
+                {
+                    if (bb.nombre == nombre)
+                        continue;
+                    bb.CambiarVida(especial.Attack(AttackBase, habilidad));
+                    especial.Hability(habilidad, bb);
+                }
+            }
+            else
+                Console.WriteLine("No te alcanza la Stamina \n Perdiste tu turno");
+            
         }
     }
 }
